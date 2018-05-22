@@ -59,6 +59,9 @@ fi
 # copy default API config anyway
 cp /usr/share/minemeld/config/api/10-defaults.yml /opt/minemeld/local/config/api
 
+# delete candidate config to force reload of running config
+/usr/bin/redis-cli del "mm:config:candidate"
+
 # check if PID DIR exists (from rabbitmq init script)
 PIDDIR=$(dirname $PIDFILE)
 if [ ! -d ${PIDDIR} ] ; then
